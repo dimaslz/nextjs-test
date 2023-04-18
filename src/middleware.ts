@@ -26,6 +26,6 @@ export async function middleware(req: NextRequest) {
 	}
 
 	return NextResponse.rewrite(
-		new URL(`${req.nextUrl.locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+		new URL(`/${req.nextUrl.locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
 	)
 }

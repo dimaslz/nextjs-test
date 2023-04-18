@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from 'next/server'
 const PUBLIC_FILE = /\.(.*)$/
 
 export async function middleware(req: NextRequest) {
+	console.log("GEO", req.geo);
+
+	console.log("Headers", req.headers)
+
 	if (
 		req.nextUrl.pathname.startsWith('/_next') ||
 		req.nextUrl.pathname.includes('/api/') ||

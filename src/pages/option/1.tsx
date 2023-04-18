@@ -2,6 +2,7 @@ import { Player as LottiePlayer } from '@lottiefiles/react-lottie-player';
 import { useCallback, useEffect, useRef } from 'react';
 import AnimationSection1 from "@/assets/AnimationSection1.json";
 import AnimationSection3 from "@/assets/AnimationSection3.json";
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -63,7 +64,14 @@ export default function Home() {
 		intersectionObserverCallback,
 	]);
 
-  return (
+	return (<>
+		<header>
+			<ul className='space-x-4 flex items-center justify-center p-6 fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-15'>
+				<li><Link href="#section1">section 1</Link></li>
+				<li><Link href="#section2">section 2</Link></li>
+				<li><Link href="#section3">section 3</Link></li>
+			</ul>
+		</header>
     <main className="flex min-h-screen flex-col items-center justify-between">
 			<section
 				ref={sectionRef1}
@@ -117,5 +125,6 @@ export default function Home() {
 				/>
 			</section>
     </main>
+	</>
   )
 }

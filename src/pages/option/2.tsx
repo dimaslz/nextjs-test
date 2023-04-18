@@ -1,4 +1,6 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
+
 const CustomLottie = dynamic(
 	() => import("@/components/CustomLottie.component"),
 	{ ssr: false }
@@ -6,7 +8,14 @@ const CustomLottie = dynamic(
 
 export default function Home() {
 
-  return (
+	return (<>
+		<header>
+			<ul className='space-x-4 flex items-center justify-center p-6 fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-15'>
+				<li><Link href="#section1">section 1</Link></li>
+				<li><Link href="#section2">section 2</Link></li>
+				<li><Link href="#section3">section 3</Link></li>
+			</ul>
+		</header>
     <main className="flex min-h-screen flex-col items-center justify-between">
 			<section
 				id="section1"
@@ -16,7 +25,7 @@ export default function Home() {
 				<p className='text-sm'>start animation only on scroll</p>
 				<CustomLottie
 					src="https://assets3.lottiefiles.com/packages/lf20_jeZMJEoXD0.json"
-					loop
+					type="loop"
 				/>
 			</section>
 
@@ -27,7 +36,7 @@ export default function Home() {
 				<div className='text-4xl text-white uppercase'>section 2</div>
 				<CustomLottie
 					src="https://assets3.lottiefiles.com/packages/lf20_eSr9cajwxS.json"
-					loop
+					type="loop"
 				/>
 			</section>
 
@@ -38,10 +47,11 @@ export default function Home() {
 				<div className='text-4xl text-white uppercase'>section 3</div>
 				<CustomLottie
 					src="https://assets9.lottiefiles.com/private_files/lf30_fpxjxaot.json"
-					loop
+					type="loop"
 				/>
 			</section>
 
     </main>
+	</>
   )
 }

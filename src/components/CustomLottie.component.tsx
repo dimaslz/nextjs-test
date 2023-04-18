@@ -6,14 +6,14 @@ import { create } from '@lottiefiles/lottie-interactivity';
  * @param {*} props
  * @returns
  */
-const App = ({ type = "loop", src }) => {
-  const myRef = useRef(null);
+const App = ({ type = "loop", src }: { type: string; src: string | object }) => {
+  const myRef = useRef<HTMLDivElement>(null);
   const uuid = crypto.randomUUID();
 
   const onLoad = useCallback(() => {
     create({
       mode: 'scroll',
-      player: `#firstLottie-${uuid}`,
+      player: `#lottie-${uuid}`,
       actions: [
         {
           visibility: [0, 100],
@@ -27,7 +27,7 @@ const App = ({ type = "loop", src }) => {
   useEffect(() => {
     if (!myRef.current) return;
 
-    myRef.current.addEventListener('load', onLoad);
+    myRef.current?.addEventListener('load', onLoad);
 
     return () => {
       myRef?.current?.removeEventListener('load', onLoad);
@@ -38,8 +38,9 @@ const App = ({ type = "loop", src }) => {
     <div className="CustomLottie">
       {window !== undefined && <lottie-player
         ref={myRef}
-        id={`firstLottie-${uuid}`}
+        id={`lottie-${uuid}`}
         mode="normal"
+        visibility={[0, 100]}
         src={src}
       ></lottie-player>}
     </div>

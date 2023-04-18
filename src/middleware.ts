@@ -13,6 +13,8 @@ export async function middleware(req: NextRequest) {
 	}
 
 	console.log("GEO", req.geo);
+	console.log("Country", req.geo?.country);
+	console.log("Locale", req.nextUrl.locale);
 
 	if (req.geo?.country) {
 		const locale = localeByCountry(req.geo?.country);

@@ -12,10 +12,6 @@ export async function middleware(req: NextRequest) {
 		return
 	}
 
-	console.log("GEO", req.geo);
-	console.log("Country", req.geo?.country);
-	console.log("Locale", req.nextUrl.locale);
-
 	if (req.nextUrl.locale === 'default') {
 		if (req.geo?.country) {
 			const locale = localeByCountry(req.geo?.country);

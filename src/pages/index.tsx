@@ -19,6 +19,9 @@ export default function Home() {
     if (!router.locale) return;
 
     const currentLocale: string | null = localStorage.getItem("locale") || null;
+
+    if (currentLocale === router.locale) return;
+
     if (currentLocale) {
       router.push(router.pathname, router.pathname, { locale: currentLocale });
       setCountryFlag(flags[currentLocale])

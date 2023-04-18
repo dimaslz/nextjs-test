@@ -19,7 +19,8 @@ export async function middleware(req: NextRequest) {
 	if (req.geo?.country) {
 		const locale = localeByCountry(req.geo?.country);
 
-		console.log("Locale", locale);
+		console.log("Locale", locale, req.nextUrl.locale);
+		if (req.nextUrl.locale === locale) return;
 
 		return NextResponse.redirect(
 			new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)

@@ -1,10 +1,10 @@
 const localeByCountry = (country: string) => {
-	const Default = "es-ES";
+	const Default = 'es-ES';
 
 	return {
-		"ES": Default,
-		"UK": "en-GB",
-		"FR": "fr-FR",
+		ES: Default,
+		UK: 'en-GB',
+		FR: 'fr-FR',
 	}[country] || Default;
 };
 

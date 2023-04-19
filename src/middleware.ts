@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import localeByCountry from "./utils/localeByCountry.util";
+import { NextRequest, NextResponse } from 'next/server';
+import localeByCountry from './utils/localeByCountry.util';
 
-const PUBLIC_FILE = /\.(.*)$/
+const PUBLIC_FILE = /\.(.*)$/;
 
 export async function middleware(req: NextRequest) {
 	if (
@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 		req.nextUrl.pathname.includes('/api/') ||
 		PUBLIC_FILE.test(req.nextUrl.pathname)
 	) {
-		return
+		return;
 	}
 
 	if (req.nextUrl.locale === 'default') {
@@ -17,15 +17,15 @@ export async function middleware(req: NextRequest) {
 			const locale = localeByCountry(req.geo?.country);
 
 			return NextResponse.redirect(
-				new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
-			)
+				new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
+			);
 		}
 		return NextResponse.redirect(
-			new URL(`/es-ES${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
-		)
+			new URL(`/es-ES${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
+		);
 	}
 
 	return NextResponse.rewrite(
-		new URL(`/${req.nextUrl.locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
-	)
+		new URL(`/${req.nextUrl.locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
+	);
 }

@@ -36,48 +36,15 @@ const App = ({ type = "loop", src }: { type: string; src: string | object }) => 
 
   return (
     <div className="CustomLottie">
-      {window !== undefined && <lottie-player
+      <lottie-player
         ref={myRef}
         id={`lottie-${uuid}`}
         mode="normal"
         visibility={[0, 100]}
         src={src}
-      ></lottie-player>}
+      ></lottie-player>
     </div>
   );
 }
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.myRef = React.createRef(); // 1. create a reference for the lottie player
-//   }
-//   componentDidMount() {
-//     // 3. listen for player load. see lottie player repo for other events
-//     this.myRef.current.addEventListener('load', (e) => {
-//       create({
-//         mode: 'scroll',
-//         player: '#firstLottie',
-//         actions: [
-//           {
-//             visibility: [0, 1],
-//             type: "loop"
-//           },
-//         ],
-//       });
-//     });
-//   }
-//   render() {
-// 		return (
-//       <div className="App">
-//         <div style={{ height: '400px' }}></div>
-//         {window !== undefined && <lottie-player
-//           ref={this.myRef} // 2. set the reference for the player
-//           id="firstLottie"
-//           src="https://assets1.lottiefiles.com/packages/lf20_myejiggj.json"
-//         ></lottie-player>}
-//       </div>
-//     );
-//   }
-// }
 
 export default App;

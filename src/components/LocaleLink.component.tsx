@@ -15,6 +15,7 @@ const LinkContainer = forwardRef<HTMLAnchorElement, LinkContainerProps>(
 		</a>
 	),
 );
+LinkContainer.displayName = 'LinkContainer';
 
 interface LocaleLinkProps {
 	href?: string | object;
@@ -29,7 +30,7 @@ const LocaleLink = ({
 	locale,
 	className,
 	onClick,
-	children
+	children,
 }: LocaleLinkProps) => (<>
 	<Link href={href} locale={locale} legacyBehavior passHref>
 		<LinkContainer onClick={() => onClick(locale)} className={className}>

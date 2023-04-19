@@ -29,11 +29,11 @@ const LottiePlayerWrapper = ({
 
 		const observer = new IntersectionObserver(intersectionObserverCallback, {});
 
-		let observeToRef: any;
-		if (observeTo && 'current' in observeTo) {
+		let observeToRef: Element | null;
+		if (observeTo && 'current' in observeTo && observeTo.current) {
 			observeToRef = observeTo.current;
 			observer.observe(observeToRef);
-		} else if (lottiePlayerRef.current) {
+		} else if (lottiePlayerRef.current?.container) {
 			observeToRef = lottiePlayerRef.current.container;
 			observer.observe(observeToRef);
 		}

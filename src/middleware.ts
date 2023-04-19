@@ -20,6 +20,7 @@ export async function middleware(req: NextRequest) {
 				new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
 			);
 		}
+
 		return NextResponse.redirect(
 			new URL(`/es-ES${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
 		);

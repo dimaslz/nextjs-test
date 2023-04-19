@@ -1,42 +1,24 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-
-type Flags = {
-  [key: string]: string
-};
-
-const flags: Flags = {
-	'en-GB': '🇬🇧',
-	'es-ES': '🇪🇸',
-	'fr-FR': '🇫🇷',
-};
-
+import { useCallback, useEffect, useState } from 'react';
+import LocaleLink from '@/components/LocaleLink.component';
+import FLAGS, { FlagKey, FlagValue } from '@/constants/flags.constant';
 
 export default function Home() {
 	const router = useRouter();
-	const [countryFlag, setCountryFlag] = useState<string>();
+	const [countryFlag, setCountryFlag] = useState<FlagValue>();
 
-	useEffect(() => {
-		if (!router.locale) return;
-
-		const currentLocale: string | null = localStorage.getItem('locale') || null;
-
-		if (currentLocale === router.locale) return;
-		if (currentLocale) {
-			router.push(router.pathname, router.pathname, { locale: currentLocale });
-		}
-
-		localStorage.setItem('locale', router.locale);
-		setCountryFlag(flags[router.locale]);
+	const updateLocaleCache = useCallback((locale: FlagKey) => {
+		setCountryFlag(FLAGS[locale]);
+		localStorage.setItem('locale', locale);
 	}, []);
 
 	useEffect(() => {
 		if (router.locale) {
-			localStorage.setItem('locale', router.locale);
-			setCountryFlag(flags[router.locale]);
+			setCountryFlag(FLAGS[router.locale as FlagKey]);
 		}
 	}, [router]);
+
 
 	return (<>
 		<div className="fixed top-0 right-0 p-4">
@@ -50,18 +32,33 @@ export default function Home() {
 			<div>locale: <span className="font-mono">{router.locale} {countryFlag}</span></div>
 
 			<div className="mt-12 space-x-4 flex">
-				<Link href="/" locale="es-ES" className="text-center">
+				<LocaleLink
+					href="/"
+					locale="es-ES"
+					className="text-center"
+					onClick={updateLocaleCache}
+				>
 					<div>spain</div>
-					<div>{flags['es-ES']}</div>
-				</Link>
-				<Link href="/" locale="fr-FR" className="text-center">
+					<div>{FLAGS['es-ES']}</div>
+				</LocaleLink>
+				<LocaleLink
+					href="/"
+					locale="fr-FR"
+					className="text-center"
+					onClick={updateLocaleCache}
+				>
 					<div>france</div>
-					<div>{flags['fr-FR']}</div>
-				</Link>
-				<Link href="/" locale="en-GB" className="text-center">
+					<div>{FLAGS['fr-FR']}</div>
+				</LocaleLink>
+				<LocaleLink
+					href="/"
+					locale="en-GB"
+					className="text-center"
+					onClick={updateLocaleCache}
+				>
 					<div>england</div>
-					<div>{flags['en-GB']}</div>
-				</Link>
+					<div>{FLAGS['en-GB']}</div>
+				</LocaleLink>
 			</div>
 		</main>
 	</>

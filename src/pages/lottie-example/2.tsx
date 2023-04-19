@@ -9,6 +9,12 @@ const CustomLottie = dynamic(
 export default function Home() {
 
 	return (<>
+		<div className="fixed top-0 left-0 p-4 z-10 space-x-4 text-sm">
+			<Link href="/" className="text-teal-600 hover:text-teal-400">
+        home
+			</Link>
+		</div>
+
 		<div className="fixed top-0 right-0 p-4 z-10 space-x-4 text-sm">
 			<Link href="/lottie-example/1" className="text-teal-600 hover:text-teal-400 z-10">
         Lottie example #1

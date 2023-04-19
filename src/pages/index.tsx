@@ -38,7 +38,13 @@ export default function Home() {
     }
   }, [router])
 
-  return (
+  return (<>
+    <div className="fixed top-0 right-0 p-4">
+      <Link href="/lottie-example/1" className="text-teal-600 hover:text-teal-400">
+        Lottie examples
+      </Link>
+    </div>
+
     <main className="flex min-h-screen flex-col items-center justify-center w-full">
       <h1 className="text-6xl">HOME</h1>
       <div>locale: <span className="font-mono">{router.locale} {countryFlag}</span></div>
@@ -58,5 +64,6 @@ export default function Home() {
         </Link>
       </div>
     </main>
+  </>
   )
 }

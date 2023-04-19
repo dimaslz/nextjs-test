@@ -65,6 +65,12 @@ export default function Home() {
 	]);
 
 	return (<>
+		<div className="fixed top-0 right-0 p-4 z-10">
+      <Link href="/lottie-example/2" className="text-teal-600 hover:text-teal-400">
+        Lottie example #2
+      </Link>
+		</div>
+
 		<header>
 			<ul className='space-x-4 flex items-center justify-center p-6 fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-15'>
 				<li><Link href="#section1">section 1</Link></li>

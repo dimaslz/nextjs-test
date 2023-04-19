@@ -21,15 +21,13 @@ export default function Home() {
     const currentLocale: string | null = localStorage.getItem("locale") || null;
 
     if (currentLocale === router.locale) return;
-
     if (currentLocale) {
       router.push(router.pathname, router.pathname, { locale: currentLocale });
-      setCountryFlag(flags[currentLocale])
-    } else if (router.locale) {
-      localStorage.setItem("locale", router.locale);
-      setCountryFlag(flags[router.locale])
     }
-  }, [setCountryFlag])
+
+    localStorage.setItem("locale", router.locale);
+    setCountryFlag(flags[router.locale])
+  }, [])
 
   useEffect(() => {
     if (router.locale) {
